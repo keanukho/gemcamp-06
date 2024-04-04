@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+
   def show
     if params[:id].present?
       @swagger = Post.find(params[:id])
@@ -69,6 +71,21 @@ class PostsController < ApplicationController
   end
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # def create
 #   @post = Post.new(params[:post].permit(:title, :content))

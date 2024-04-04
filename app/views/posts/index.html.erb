@@ -1,22 +1,102 @@
+<!--<div class="container-md">-->
+
+<!--<h1>Post List</h1>-->
+<!--<table class="table table-success table-striped">-->
+<!--  <thead>-->
+<!--  <td>ID</td>-->
+<!--  <td>Title</td>-->
+<!--  <td>Content</td>-->
+<!--  <td>Date</td>-->
+<!--  <td>Updates</td>-->
+<!--  </thead>-->
 <%# @posts.each do |post| %>
-  <%#=post.title%>
-  <%#=post.content%>
+<!--    <tr>-->
+<!--      <td><%#= post.id %></td>-->
+<!--      <td><%#= post.title %></td>-->
+<!--      <td><%#= post.content %></td>-->
+<!--      <td><%#= post.created_at %></td>-->
+<!--      <td><%#= post.updated_at %></td>-->
+<!--    </tr>-->
 <%# end %>
+<!--</table>-->
+<!--</div>-->
 
 
-<h1>Post List</h1>
+<div class="container-md">
+  <h1>Post List</h1>
 
-<table class="table table-success table-striped">
-  <thead>
-  <td>title</td>
-  <td>content</td>
-  <td>action</td>
-  </thead>
-  <% @posts.each do |post| %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.content %></td>
-      <td></td>
-    </tr>
+  <%= form_with(url: posts_path, method: "get") do %>
+    <div class="mb-3 row">
+      <div class="col-md-6">
+        <%= label_tag :title, "Title" %>
+        <%= text_field_tag :title, params[:title], class: "form-control", placeholder: "Insert Title..." %>
+      </div>
+      <div class="col-md-6">
+        <%= label_tag :content, "Content" %>
+        <%= text_field_tag :content, params[:content], class: "form-control", placeholder: "Insert Content..." %>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-md-6">
+        <%= label_tag :start_date, "Start Date" %>
+        <%= datetime_field_tag :start_date, params[:start_date], class: "form-control", placeholder: "YYYY-MM-DD HH:MM", step: 1 %>
+      </div>
+      <div class="col-md-6">
+        <%= label_tag :end_date, "End Date" %>
+        <%= datetime_field_tag :end_date, params[:end_date], class: "form-control", placeholder: "YYYY-MM-DD HH:MM", step: 1 %>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <%= label_tag :order_by, "Sort By" %><br>
+      <%= radio_button_tag :order_by, "ASC", params[:order_by] == "ASC" %>
+      <%= label_tag :order_by_asc, "Ascending" %>
+      <%= radio_button_tag :order_by, "DESC", params[:order_by] == "DESC" %>
+      <%= label_tag :order_by_desc, "Descending" %>
+    </div>
+
+    <%= submit_tag "Filter", class: "btn btn-primary" %>
   <% end %>
-</table>
+
+
+  <br>
+  <table class="table table-success table-striped">
+    <thead>
+    <tr>
+      <td>ID</td>
+      <td>Title</td>
+      <td>Content</td>
+      <td>Date</td>
+      <td>Updates</td>
+      <td>Action</td>
+    </tr>
+    </thead>
+    <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= post.created_at %></td>
+        <td><%= post.updated_at %></td>
+        <td>
+          <%= link_to 'Show', post_path(post) %>
+          <%= link_to 'Edit', edit_post_path(post) %>
+          <%= button_to 'Delete', post_path(post), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'New', new_post_path %>
+</div>
+
+
+
+
+
+
+<%# @posts.each do |post| %>
+<%#=post.title%>
+<%#=post.content%>
+<%# end %>

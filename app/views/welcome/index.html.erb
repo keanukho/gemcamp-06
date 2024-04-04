@@ -6,37 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-  <style>
-      body, h1, h2, h3, h4, h5, h6 {
-          font-family: "Karma", sans-serif;
-      }
 
-      /* CSS for navbar */
-      .navbar-nav .nav-link {
-          transition: all 0.3s ease;
-      }
-
-      .navbar-nav .nav-item.active .nav-link.active {
-          font-weight: bold; /* Change the font weight */
-          /* You can add more styles here like color change, background color change, etc. */
-      }
-
-      .navbar-nav .nav-link:hover {
-          font-weight: bold; /* Change the font weight */
-          /* You can add more styles here like color change, background color change, etc. */
-      }
-  </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <ul class="navbar-nav mr-auto">
-    <%= link_to "Home", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
-    <%= link_to "about", about_path, class: "nav-link #{'active' if current_page?(about_path)}" %>
-    <%= link_to "contact us", contact_path, class: "nav-link #{'active' if current_page?(contact_path)}" %>
-    <%= link_to "show", show_path, class: "nav-link #{'active' if current_page?(show_path)}" %>
-  </ul>
-</nav>
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--  <ul class="navbar-nav mr-auto">-->
+    <%#= link_to "Home", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
+    <%#= link_to "About", about_path, class: "nav-link #{'active' if current_page?(about_path)}" %>
+    <%#= link_to "Contact Us", contact_path, class: "nav-link #{'active' if current_page?(contact_path)}" %>
+    <%#= link_to "Show", show_path, class: "nav-link #{'active' if current_page?(show_path)}" %>
+    <%#= link_to "New", new_post_path, class: "nav-link #{'active' if current_page?(new_post_path)}" %>
+<!--  </ul>-->
+<!--</nav>-->
 
 
 <!-- Add id to navigation links -->

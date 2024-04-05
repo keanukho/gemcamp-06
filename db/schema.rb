@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_27_061157) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_05_094806) do
+  create_table "comments", charset: "utf8mb4", force: :cascade do |t|
+    t.string "content"
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+  end
+
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -18,4 +26,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_27_061157) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "students", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "student_serial_number"
+    t.date "birthdate"
+    t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "comments", "posts"
 end

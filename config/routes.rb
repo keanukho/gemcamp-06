@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get 'about',   to: 'welcome#about'
   get 'contact', to: 'welcome#contact'
 
-  resources :posts
+   resources :posts do
+     resources :comments, except: :show
+   end
+
 end
 

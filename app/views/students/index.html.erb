@@ -1,0 +1,20 @@
+<h1>Student List</h1>
+
+<table>
+  <thead>
+  <tr>
+    <td>Title</td>
+    <td>Content</td>
+    <td>Action</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @students.each do |student| %>
+    <tr>
+      <td><%= student.name %></td>
+<!--      <td><%#= student.student-serial-number %></td>-->
+      <td><!-- Add action links/buttons here --></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -35,7 +35,8 @@ end
   name = Faker::Name.name
   student_serial_number = Faker::Alphanumeric.alpha(number: 6).upcase
   birthdate = Faker::Date.birthday(min_age: 18, max_age: 30)
-  phone_number = generate_phone_number
+  4.times do
+    phone_number = generate_phone_number
 
   student = Student.new(
     name: name,
@@ -53,4 +54,10 @@ end
   # Save the student
   student.save
 end
+end
+
+
+
+
+
 

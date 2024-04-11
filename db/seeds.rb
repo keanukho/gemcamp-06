@@ -38,23 +38,35 @@ end
   4.times do
     phone_number = generate_phone_number
 
-  student = Student.new(
-    name: name,
-    student_serial_number: student_serial_number,
-    birthdate: birthdate,
-    phone_number: phone_number
-  )
+    student = Student.new(
+      name: name,
+      student_serial_number: student_serial_number,
+      birthdate: birthdate,
+      phone_number: phone_number
+    )
 
-  # Validate uniqueness of student serial number
-  next unless Student.find_by(student_serial_number: student_serial_number).nil?
+    # Validate uniqueness of student serial number
+    next unless Student.find_by(student_serial_number: student_serial_number).nil?
 
-  # Validate uniqueness of name
-  next unless Student.find_by(name: name).nil?
+    # Validate uniqueness of name
+    next unless Student.find_by(name: name).nil?
 
-  # Save the student
-  student.save
+    # Save the student
+    student.save
+  end
 end
+
+
+categories = []
+
+30.times do
+  categories << { name: Faker::Educator.subject }
 end
+
+categories.each do |category|
+  Category.create(category)
+end
+
 
 
 

@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.includes(:categories).page(params[:page]).per(5)
     @posts = @posts.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
     @posts = @posts.where("content LIKE ?", "%#{params[:content]}%") if params[:content].present?
 
@@ -67,7 +67,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, category_ids: [])
   end
 
 end

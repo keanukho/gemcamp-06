@@ -8,10 +8,11 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :post_category_ships
   has_many :categories, through: :post_category_ships
-end
+  belongs_to :user, optional: true
 
-def destroy
-  update(deleted_at: Time.now)
+  def destroy
+    update(deleted_at: Time.now)
+  end
 end
 
 # kapag 10 post bawal na mag create ng post pa

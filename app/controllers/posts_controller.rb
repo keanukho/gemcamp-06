@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :validate_post_owner, only: [:edit, :update, :destroy]
 
   def show
     if params[:id].present?
@@ -10,6 +12,7 @@ class PostsController < ApplicationController
   end
 
   def index
+    @posts = Post.includes(:categories, :user).all
     @posts = Post.includes(:categories).page(params[:page]).per(5)
     @posts = @posts.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
     @posts = @posts.where("content LIKE ?", "%#{params[:content]}%") if params[:content].present?
@@ -30,6 +33,7 @@ class PostsController < ApplicationController
   def create
     # render json: params
     @post = Post.new(params[:post].permit(:title, :content))
+    @post.user = current_user
     if @post.save
       flash[:notice] = 'Post created successfully'
       redirect_to posts_path
@@ -70,28 +74,10 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :content, category_ids: [])
   end
 
+  def validate_post_owner
+    unless @post.user == current_user
+      flash[:notice] = 'the post not belongs to you'
+      redirect_to posts_path
+    end
+  end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def create
-#   @post = Post.new(params[:post].permit(:title, :content))
-#   if @post.save
-#     redirect_to posts_path
-#   else
-#     render :new
-#   end
-# end

@@ -69,6 +69,7 @@ group :development do
   # gem "spring"
   gem 'faker', '~> 2.22.0'
   gem 'carrierwave'
+  gem 'active_model_serializers'
 end
 
 

@@ -12,10 +12,16 @@
       <%= form.label :"Title: " %>
       <%= form.text_field :title %>
     </div>
+
     <div>
       <%= form.label :"Content: " %>
       <%= form.text_field :content %>
     </div>
+
+    <div>
+      <%= form.file_field :image %>
+    </div>
+
     <br>
     <%= form.submit %>
   <% end %>
